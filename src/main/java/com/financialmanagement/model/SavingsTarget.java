@@ -1,5 +1,6 @@
 package com.financialmanagement.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class SavingsTarget {
@@ -10,8 +11,7 @@ public class SavingsTarget {
     private SavingsType type;
     private Budget budget; // Add a budget field to the SavingsTarget class
 
-    public SavingsTarget(String name, double amount, Date deadline, SavingsType type,
-        Budget budget) {
+    public SavingsTarget(String name, double amount, Date deadline, SavingsType type) {
         this.name = name;
         this.amount = amount;
         this.deadline = deadline;

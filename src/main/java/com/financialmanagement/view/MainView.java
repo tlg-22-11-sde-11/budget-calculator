@@ -1,5 +1,5 @@
 package com.financialmanagement.view;
 
-public class SessionView {
+public class MainView {
 
 }
