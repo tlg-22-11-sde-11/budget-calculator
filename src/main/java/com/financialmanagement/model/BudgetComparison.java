@@ -14,18 +14,28 @@ public abstract class BudgetComparison {
   public static final String AVG_MSG = "%s: The average American household spends %.2f%% of their after-tax income in this category.%n";
   public static final String COMPARE_MESSAGE = "Difference: %.2f You are spending %s the national household average for this category.%n";
 
-  double matchSpendingPercentage;
+  private double matchSpendingPercentage;
+  private double expenseAmount;
+  private double incomeAmount;
+  private double difference;
+  private String operator;
 
   //BudgetComparison Ctor
-  public BudgetComparison(Category category,
-      String name) { // TODO: 1/10/2023 add a Category for ALL?
+  public BudgetComparison(Category category, String name) {
     Budget userBudget = new Budget(name);
-    userBudget.getCategories(userBudget.getCategoryAmount(
-        category)); // TODO: 1/10/2023 public Map<Category, Double> getCategories(double categoryAmount)
-    matchSpendingPercentage = userBudget.getTotal() * AVG_SPENDING_PRCNT;
+    incomeAmount = userBudget.getIncome();
+    expenseAmount = userBudget.getCategoryAmount(category);
+
+    //matchSpendingPercentage = userBudget.getTotal() * AVG_SPENDING_PRCNT;
   }
 
-  void compareThis(String category) {
+  public double compareThis(String category) {
+    difference =  expenseAmount - (incomeAmount * ;
+    operator = difference == 0 ? "the SAME AS" : difference > 0 ? "MORE THAN" : "LESS THAN";
+    System.out.printf(AVG_MSG, category, AVG_SPENDING_PRCNT);
+    System.out.printf(COMPARE_MESSAGE, difference, operator);
+
+    return
   }
 }
 
@@ -36,11 +46,9 @@ public class compareSpending extends BudgetComparison {
   }
 
   @Override
-  public void compareThis(String category) {
+  public double compareThis(String category) {
     double difference = matchSpendingPercentage - budget.totalSpending;
-    String operator = difference == 0 ? "the SAME AS" : difference > 0 ? "MORE THAN" : "LESS THAN";
-    System.out.printf(AVG_MSG, category, AVG_SPENDING_PRCNT);
-    System.out.printf(COMPARE_MESSAGE, difference, operator);
+
   }
 }
 
