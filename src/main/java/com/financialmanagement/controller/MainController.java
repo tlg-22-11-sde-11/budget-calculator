@@ -19,8 +19,9 @@ public class MainController {
   }
   public void run() throws IOException {
     MainView view = new MainView();
-
-
+  }
+  // TODO: 1/10/23 create new method with user inputs
+  public static void startDialog(){
   }
 
   private boolean continueBudgeting() throws IOException {
