@@ -7,6 +7,7 @@ public class SavingsTarget {
 
     private String name;
     private double amount;
+    private Date startDate;
     private Date deadline;
     private SavingsType type;
     private Budget budget; // Add a budget field to the SavingsTarget class
@@ -33,6 +34,13 @@ public class SavingsTarget {
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    public Date getStartDate() {
+        return this.startDate;
+    }
+
+    public void setStartDate() {
     }
 
     public Date getDeadline() {
