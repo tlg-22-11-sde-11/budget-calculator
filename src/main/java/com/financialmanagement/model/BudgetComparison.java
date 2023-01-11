@@ -30,7 +30,7 @@ public abstract class BudgetComparison {
   }
 
   public double compareThis(String category) {
-    difference =  expenseAmount - (incomeAmount * ;
+    difference =  expenseAmount - (incomeAmount * );
     operator = difference == 0 ? "the SAME AS" : difference > 0 ? "MORE THAN" : "LESS THAN";
     System.out.printf(AVG_MSG, category, AVG_SPENDING_PRCNT);
     System.out.printf(COMPARE_MESSAGE, difference, operator);
