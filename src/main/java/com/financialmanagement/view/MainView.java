@@ -12,9 +12,10 @@ public class MainView {
     private BudgetComparison comparison;
     private SavingsTarget savingsTarget;
 
-    public MainView(Budget budget, SavingsTarget savingsTarget) {
+    public MainView(Budget budget, BudgetComparison comparison, SavingsTarget savingsTarget) {
         this.budget = budget;
         this.savingsTarget = savingsTarget;
+        this.comparison = comparison;
     }
 
     public void displayIncome() {
@@ -28,14 +29,6 @@ public class MainView {
         }
     }
 
-    // display comaparison
-//    public void displayExpensesComparedToUSAverage() {
-//        for (Category category : Category.values()) {
-//            double ratio = comparison.compareExpense(category);
-//            System.out.printf("Your %s expenses are %.2f% of the US average%n", category, ratio * 100);
-//        }
-//    }
-
     public void displaySavings() {
         System.out.println("Your total savings is: $" + budget.getSavings());
     }
@@ -44,7 +37,7 @@ public class MainView {
         System.out.println("Your savings goal is: $" + savingsTarget.getTargetAmount() + " for "
         + savingsTarget.getSavingsType());
         System.out.println("You have saved $" + savingsTarget.getCurrentSaved()
-        + " towards your goal. You still need to save $" + savingsTarget.remaingToSave(savingsTarget.getTargetAmount() - savingsTarget.getCurrentSaved())
+        + " towards your goal. You still need to save $" + savingsTarget.getRemainingAmount()
         + " to reach your goal.");
     }
 

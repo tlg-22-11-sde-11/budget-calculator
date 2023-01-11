@@ -2,8 +2,6 @@ package com.financialmanagement.model;
 
 public class SavingsTarget {
 
-    public String getRemainingToSave;
-    public String remaingToSave;
     private double remainingAmount;
     private double targetAmount;
     private SavingsType savingsType;
@@ -13,6 +11,7 @@ public class SavingsTarget {
         this.targetAmount = targetAmount;
         this.savingsType = savingsType;
         this.currentSaved = currentSaved;
+        this.remainingAmount = targetAmount - currentSaved;
     }
 
     public double getRemainingAmount() {
@@ -47,8 +46,5 @@ public class SavingsTarget {
         this.currentSaved = currentSaved;
     }
 
-    public double remaingToSave(double v) {
-        return 0;
-    }
 }
 

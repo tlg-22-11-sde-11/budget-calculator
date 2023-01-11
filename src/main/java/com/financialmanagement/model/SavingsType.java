@@ -1,9 +1,10 @@
 package com.financialmanagement.model;
 
 public enum SavingsType {
-  SHORT_TERM("Short-Term"),
-  MEDIUM_TERM("Medium-Term"),
-  LONG_TERM("Long-Term");
+  EMERGENCYFUND("Emergency Fund"),
+  VACATION("Vacation"),
+  OTHER("Other");
+
 
   private String name;
 
