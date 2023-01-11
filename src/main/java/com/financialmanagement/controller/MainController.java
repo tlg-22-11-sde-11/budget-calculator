@@ -52,7 +52,7 @@ public class MainController {
               budget.addExpense(category,
                   amount); //let addExpense check validation throw the exception
               // TODO: 1/11/2023 keep track of total expenses so the running total doesn't exceed the income amount!
-              comparison.compareExpense(category);
+              comparison.compareEachExpense(category);
               break;
             } else {
               System.out.println(
@@ -63,6 +63,8 @@ public class MainController {
           }
         }
       }
+
+      comparison.compareAllExpenses();
 
       double targetAmount = 0;
       while (true) {
