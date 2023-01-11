@@ -17,10 +17,11 @@ class BudgetComparisonTest {
 
   @Test
   void BudgetComparison_init () {
-    BudgetComparison comparing = new BudgetComparison(categories, category, name);
     Budget budget = new Budget(name);
     budget.setIncome(100000.0);
     budget.setTotal(5040.0);
+    BudgetComparison comparing = new BudgetComparison(categories, category, name);
+
     comparing.compareThis(category);
   }
 }

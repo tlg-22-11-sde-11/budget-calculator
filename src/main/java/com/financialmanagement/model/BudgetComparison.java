@@ -8,24 +8,26 @@ public class BudgetComparison {
   public static final String COMPARE_MESSAGE = "Difference: %.2f You are spending %s the national household average for this category.%n%n";
 
   private double categoryExpenseAmount;
-  //private double userIncomeAmount;
+  private double userIncomeAmount;
+  double difference;
+  double categoryAverage;
+
   private Map<Category, Double> categories;
 
 
   //BudgetComparison Ctor
-  public BudgetComparison(Map<Category, Double> categories, Category category, String name) {
-    Budget userBudget = new Budget("Ray");
-    this.categories = categories;
+  public BudgetComparison(Map<Category, Double> categories, Category comparingCategory, String userName) {
+    //this.categories = categories;
+    Budget userBudget = new Budget(userName);
+    userIncomeAmount = userBudget.getIncome();
+    categoryExpenseAmount = categories.get(comparingCategory);
   }
-
-  double userIncomeAmount = userBudget.getIncome();
 
   public void compareThis(Category category) {
 
-    categoryExpenseAmount = categories.get(category);
-    double categoryAverage = (category.percentage()*userIncomeAmount);
+    categoryAverage = (category.percentage()*userIncomeAmount);
     System.out.println(categoryAverage);
-    double difference =  categoryAverage - categoryExpenseAmount;
+    difference =  categoryAverage - categoryExpenseAmount;
     String operator = difference == 0 ? "the SAME AS" : difference > 0 ? "MORE THAN" : "LESS THAN";
 
     System.out.printf(AVG_MSG, category.category(), (category.percentage()*100));
