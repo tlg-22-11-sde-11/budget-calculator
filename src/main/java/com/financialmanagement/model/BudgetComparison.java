@@ -1,57 +1,42 @@
 package com.financialmanagement.model;
 
-public abstract class BudgetComparison {
-  //This class may need a calculator class function
-  //Budget class has fake data for sake of creating functional code but will be deleted
+import java.util.Map;
 
-  //According to 2020 Consumer Expenditure Survey conducted by the U.S. Bureau of Labor Statistics.
-  public static final int AVG_SPENDING_PRCNT = 82;
-  public static final int AVG_HOUSING_PRCNT = 15;
-  public static final int AVG_TRANSPORT_PRCNT = 12;
-  public static final int AVG_UTIL_PRCNT = 10;
-  public static final int AVG_FOOD_PRCNT = 9;
-  public static final int AVG_ENTERTAIN_PRCNT = 3;
-  public static final String AVG_MSG = "%s: The average American household spends %.2f%% of their after-tax income in this category.%n";
-  public static final String COMPARE_MESSAGE = "Difference: %.2f You are spending %s the national household average for this category.%n";
+public class BudgetComparison {
 
-  private double matchSpendingPercentage;
-  private double expenseAmount;
-  private double incomeAmount;
-  private double difference;
-  private String operator;
+  public static final String AVG_MSG = "%n%s: The average American household spends %.2f%% of their after-tax income in this category.%n";
+  public static final String COMPARE_MESSAGE = "Difference: %.2f You are spending %s the national household average for this category.%n%n";
+
+  private double categoryExpenseAmount;
+  private double userIncomeAmount;
+  double difference;
+  double categoryAverage;
+
+  private Map<Category, Double> categories;
+
 
   //BudgetComparison Ctor
-  public BudgetComparison(Category category, String name) {
-    Budget userBudget = new Budget(name);
-    incomeAmount = userBudget.getIncome();
-    expenseAmount = userBudget.getCategoryAmount(category);
-
-    //matchSpendingPercentage = userBudget.getTotal() * AVG_SPENDING_PRCNT;
+  public BudgetComparison(Map<Category, Double> categories, Category comparingCategory, String userName) {
+    //this.categories = categories;
+    Budget userBudget = new Budget(userName);
+    userIncomeAmount = userBudget.getIncome();
+    categoryExpenseAmount = categories.get(comparingCategory);
   }
 
-  public double compareThis(String category) {
-    difference =  expenseAmount - (incomeAmount * );
-    operator = difference == 0 ? "the SAME AS" : difference > 0 ? "MORE THAN" : "LESS THAN";
-    System.out.printf(AVG_MSG, category, AVG_SPENDING_PRCNT);
+  public void compareThis(Category category) {
+
+    categoryAverage = (category.percentage()*userIncomeAmount);
+    System.out.println(categoryAverage);
+    difference =  categoryAverage - categoryExpenseAmount;
+    String operator = difference == 0 ? "the SAME AS" : difference > 0 ? "MORE THAN" : "LESS THAN";
+
+    System.out.printf(AVG_MSG, category.category(), (category.percentage()*100));
     System.out.printf(COMPARE_MESSAGE, difference, operator);
-
-    return
   }
 }
 
-public class compareSpending extends BudgetComparison {
 
-  public compareSpending(Category category, String name) {
-    super(category, name);
-  }
-
-  @Override
-  public double compareThis(String category) {
-    double difference = matchSpendingPercentage - budget.totalSpending;
-
-  }
-}
-
+/*co
 class compareHousing extends BudgetComparison {
 
   @Override
