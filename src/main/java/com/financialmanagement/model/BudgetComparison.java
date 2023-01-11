@@ -4,32 +4,33 @@ import java.util.Map;
 
 public class BudgetComparison {
 
-    private static final Map<Category, Double> US_AVERAGE_EXPENSES = Map.of(
-        Category.ALL, 0.82,
-        Category.FOOD, 0.0,
-        Category.HOUSING, 0.0,
-        Category.ENTERTAINMENT, 0.0,
-        Category.TRANSPORTATION, 0.0,
-        Category.UTILITIES, 0.0
-    );
-
+    public static final String AVG_MSG = "%n%s: The average American household spends %.2f%% of their after-tax income in this category.%n";
+    public static final String COMPARE_MESSAGE = "Difference: You are spending %.2f %s  the national household average for this category.%n%n";
     private final Budget budget;
+    private double categoryUSAverage;
+    private double difference;
+    //private double user
 
     public BudgetComparison(Budget budget) {
-        this.budget = budget;
+        this.budget =  budget;
     }
 
-    public double compareExpense(Category category) {
-        return budget.getExpense(category) / US_AVERAGE_EXPENSES.get(category);
+    public void compareExpense(Category category) {
+      categoryUSAverage = (budget.getIncome()* category.percentage());
+      System.out.println(categoryUSAverage);
+      difference =  budget.getExpense(category) - categoryUSAverage;
+      String operator = difference == 0 ? "the SAME AS" : difference > 0 ? "MORE THAN" : "LESS THAN";
+      System.out.printf(AVG_MSG, category.category(), (category.percentage()*100));
+      System.out.printf(COMPARE_MESSAGE, Math.abs(difference),  operator);
     }
 
-    public double getUSAverageExpense(Category category) {
-        return US_AVERAGE_EXPENSES.get(category);
-    }
+    //public void compareAllExpenses() {
+
+
+    //}
 }
 
-//  public static final String AVG_MSG = "%n%s: The average American household spends %.2f%% of their after-tax income in this category.%n";
-//  public static final String COMPARE_MESSAGE = "Difference: %.2f You are spending %s the national household average for this category.%n%n";
+//
 //
 //  private double categoryExpenseAmount;
 //  private double userIncomeAmount;
