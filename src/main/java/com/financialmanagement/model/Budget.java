@@ -11,6 +11,7 @@ public class Budget {
     private Map<Category, Double> categories;
     private SavingsTarget savingsTarget;
 
+    public Budget() {}
     public Budget(String name) {
         this.name = name;
         this.categories = new EnumMap<>(Category.class);
@@ -81,6 +82,7 @@ public class Budget {
         }
         return remainingBudget;
     }
+
 
 }
 
