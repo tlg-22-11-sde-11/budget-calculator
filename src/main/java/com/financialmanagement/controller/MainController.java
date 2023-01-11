@@ -18,12 +18,12 @@ public class MainController {
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     String userName = "";
     try {
-      System.out.println("Please enter your name: ");
+      System.out.print("Please enter your name: ");
       userName = reader.readLine();
       double income;
       //Budget budget = null;
       while (true) {
-        System.out.println("Enter your monthly income: ");
+        System.out.print("Enter your monthly income: ");
         String input = reader.readLine();
         try {
           income = Double.parseDouble(input);
@@ -44,7 +44,7 @@ public class MainController {
       for (Category category : Category.values()) {
         double amount;
         while (true) {
-          System.out.println("Enter your monthly expenses for " + category + ": ");
+          System.out.print("Enter your monthly expenses for " + category + ": ");
           String input = reader.readLine();
           try {
             amount = Double.parseDouble(input);
@@ -68,7 +68,7 @@ public class MainController {
 
       double targetAmount = 0;
       while (true) {
-        System.out.println("Enter your savings goal amount: ");
+        System.out.print("Enter your savings goal amount: ");
         String input = reader.readLine();
         try {
           targetAmount = Double.parseDouble(input);
@@ -87,7 +87,7 @@ public class MainController {
 
       double currentSaved = 0;
       while (true) {
-        System.out.println("Enter your current savings: ");
+        System.out.print("Enter your current savings: ");
         String input = reader.readLine();
         try {
           currentSaved = Double.parseDouble(input);
@@ -105,12 +105,11 @@ public class MainController {
       SavingsTarget savingsTarget = new SavingsTarget(targetAmount, savingsType, currentSaved);
       savingsTarget.setRemainingAmount(targetAmount - currentSaved);
 
-      MainView view = new MainView(budget, savingsTarget);
+      MainView view = new MainView(budget, comparison, savingsTarget);
       view.displayIncome();
       view.displayExpenses();
       view.displaySavings();
       view.displaySavingsTarget();
-      //view.displayExpensesComparedToUSAverage();
 
     } catch (IOException e) {
       throw new RuntimeException(e);
@@ -121,9 +120,9 @@ public class MainController {
     while (true) {
       try {
         System.out.println(message);
-        System.out.println("1. Short-Term");
-        System.out.println("2. Medium-Term");
-        System.out.println("3. Long-Term");
+        System.out.println("1. Emergency Fund");
+        System.out.println("2. Vacation");
+        System.out.println("3. Other");
         int choice = Integer.parseInt(reader.readLine());
         if (choice >= 1 && choice <= 3) {
           return SavingsType.values()[choice - 1];

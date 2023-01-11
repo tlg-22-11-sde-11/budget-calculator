@@ -11,6 +11,7 @@ public class BudgetComparison {
     private double totalDifference;
 
     public BudgetComparison(Budget budget) {
+
         this.budget =  budget;
     }
 
