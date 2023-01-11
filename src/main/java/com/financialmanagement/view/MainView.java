@@ -29,12 +29,12 @@ public class MainView {
     }
 
     // display comaparison
-    public void displayExpensesComparedToUSAverage() {
-        for (Category category : Category.values()) {
-            double ratio = comparison.compareExpense(category);
-            System.out.printf("Your %s expenses are %.2f% of the US average%n", category, ratio * 100);
-        }
-    }
+//    public void displayExpensesComparedToUSAverage() {
+//        for (Category category : Category.values()) {
+//            double ratio = comparison.compareExpense(category);
+//            System.out.printf("Your %s expenses are %.2f% of the US average%n", category, ratio * 100);
+//        }
+//    }
 
     public void displaySavings() {
         System.out.println("Your total savings is: $" + budget.getSavings());
