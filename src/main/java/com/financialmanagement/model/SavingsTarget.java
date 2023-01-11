@@ -1,82 +1,54 @@
 package com.financialmanagement.model;
 
-import java.time.LocalDate;
-import java.util.Date;
-
 public class SavingsTarget {
 
-    private String name;
-    private double amount;
-    private Date startDate;
-    private Date deadline;
-    private SavingsType type;
-    private Budget budget; // Add a budget field to the SavingsTarget class
+    public String getRemainingToSave;
+    public String remaingToSave;
+    private double remainingAmount;
+    private double targetAmount;
+    private SavingsType savingsType;
+    private double currentSaved;
 
-    public SavingsTarget(String name, double amount, Date deadline, SavingsType type) {
-        this.name = name;
-        this.amount = amount;
-        this.deadline = deadline;
-        this.type = type;
-        this.budget = budget;
+    public SavingsTarget(double targetAmount, SavingsType savingsType, double currentSaved) {
+        this.targetAmount = targetAmount;
+        this.savingsType = savingsType;
+        this.currentSaved = currentSaved;
     }
 
-    public String getName() {
-        return this.name;
+    public double getRemainingAmount() {
+        return targetAmount - currentSaved;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRemainingAmount(double remainingAmount) {
+        this.remainingAmount = remainingAmount;
     }
 
-    public double getAmount() {
-        return this.amount;
+    public double getTargetAmount() {
+        return targetAmount;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public void setTargetAmount(double targetAmount) {
+        this.targetAmount = targetAmount;
     }
 
-    public Date getStartDate() {
-        return this.startDate;
+    public SavingsType getSavingsType() {
+        return savingsType;
     }
 
-    public void setStartDate() {
+    public void setSavingsType(SavingsType savingsType) {
+        this.savingsType = savingsType;
     }
 
-    public Date getDeadline() {
-        return this.deadline;
+    public double getCurrentSaved() {
+        return currentSaved;
     }
 
-    public void setDeadline(Date deadline) {
-        this.deadline = deadline;
+    public void setCurrentSaved(double currentSaved) {
+        this.currentSaved = currentSaved;
     }
 
-    public SavingsType getType() {
-        return this.type;
+    public double remaingToSave(double v) {
+        return 0;
     }
-
-    public void setType(SavingsType type) {
-        this.type = type;
-    }
-
-    public Budget getBudget() {
-        return this.budget;
-    }
-
-    public void setBudget(Budget budget) {
-        this.budget = budget;
-    }
-
-    public double getAmountRemaining() {
-        return this.amount - getAmountSaved();
-    }
-
-    public double getAmountSaved() {
-        // Calculate the amount saved towards this savings target using the budget data
-        Budget budget = this.getBudget();
-        double amountSaved = budget.getSavingsTargetAmount(this);
-        return amountSaved;
-    }
-
 }
 
