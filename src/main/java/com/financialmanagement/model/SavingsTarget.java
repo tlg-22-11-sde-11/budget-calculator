@@ -14,7 +14,7 @@ public class SavingsTarget {
         this.remainingAmount = targetAmount - currentSaved;
     }
 
-    public double getRemainingAmount() {
+    public double getRemainingAmount(){
         return targetAmount - currentSaved;
     }
 
@@ -42,7 +42,10 @@ public class SavingsTarget {
         return currentSaved;
     }
 
-    public void setCurrentSaved(double currentSaved) {
+    public void setCurrentSaved(double currentSaved) throws NumberFormatException{
+        if(currentSaved < 0){
+            throw new NumberFormatException("The input is invalid. Your current savings should be greater than or equal to 0");
+        }else
         this.currentSaved = currentSaved;
     }
 
