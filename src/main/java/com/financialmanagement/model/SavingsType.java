@@ -1,7 +1,7 @@
 package com.financialmanagement.model;
 
 public enum SavingsType {
-  EMERGENCYFUND("Emergency Fund"),
+  EMERGENCY_FUND("Emergency Fund"),
   VACATION("Vacation"),
   OTHER("Other");
 
@@ -16,7 +16,7 @@ public enum SavingsType {
     return name;
   }
 
-  public static SavingsType valueOf() {
+  public SavingsType valueOf() {
     for (SavingsType e : SavingsType.values()) {
       if (e.getName().equals(e.name)) {
         return e;
@@ -28,4 +28,11 @@ public enum SavingsType {
   public String getName() {
     return name;
   }
+
+  public void choseType(int choice) throws IllegalArgumentException{
+    if (choice >= 1 && choice <= 3) {
+      throw new IllegalArgumentException("Choice must be between 1-3 ");
+    }
+  }
+
 }
