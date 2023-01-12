@@ -2,12 +2,13 @@ package com.financialmanagement.model;
 
 import java.nio.charset.IllegalCharsetNameException;
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Budget {
 
   private double income;
-  private Map<Category, Double> expenses;
+  private Map<Category, Double> expenses = new HashMap<>();
   private String userName;
 
   public Budget() {
@@ -52,6 +53,9 @@ public class Budget {
     if (amount < 0) {
       throw new IllegalArgumentException("The amount entered must be greater than or equal to 0");
     }
+    /*if (expenses == null){
+      expenses = new HashMap<>();
+    }*/
       expenses.put(category, amount);
   }
 

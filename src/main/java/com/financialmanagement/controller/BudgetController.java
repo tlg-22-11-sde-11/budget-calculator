@@ -67,11 +67,12 @@ public class BudgetController {
   public void requestUserExpenses(BudgetComparison comparison) throws IOException {
     for (Category category : Category.values()) {
       while (true) {
-        System.out.print("Enter your monthly expenses for " + category + ": ");
+        System.out.printf("Enter your monthly expenses for %s: ", category);
         double amount = 0;
         try {
           amount = Double.parseDouble(reader.readLine());
           budget.addExpense(category, amount);
+          comparison.compareEachExpense(category);
           break;
         } catch (IllegalArgumentException e) {
           System.out.format("Invalid input %s%n: ", input);
