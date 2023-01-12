@@ -1,6 +1,5 @@
 package com.financialmanagement.controller;
 
-
 import com.financialmanagement.model.Budget;
 import com.financialmanagement.model.BudgetComparison;
 import com.financialmanagement.model.Category;
@@ -11,7 +10,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
-
 
 public class BudgetController {
 
@@ -31,9 +29,10 @@ public class BudgetController {
 
   //Business Method
   public void initialize() throws IOException {
-      Budget budget = new Budget();
-      enterUserName(budget);
-      enterIncome(budget);
+    Budget budget = new Budget();
+    enterUserName(budget);
+    enterIncome(budget);
+    // TODO: 1/12/2023 place all methods here
   }
 
   private void enterIncome(Budget budget) throws IOException {
@@ -66,15 +65,12 @@ public class BudgetController {
   }
 
   public void requestUserExpenses(BudgetComparison comparison) throws IOException {
-
     for (Category category : Category.values()) {
-      double amount;
       while (true) {
         System.out.print("Enter your monthly expenses for " + category + ": ");
-        String input = null;
+        double amount = 0;
         try {
-          input = reader.readLine();
-          amount = Double.parseDouble(input);
+          amount = Double.parseDouble(reader.readLine());
           budget.addExpense(category, amount);
           break;
         } catch (IllegalArgumentException e) {
@@ -85,64 +81,53 @@ public class BudgetController {
     comparison.compareAllExpenses();
   }
 
-
-  public void savingsMethod() throws IOException {
-    double savingsGoal = 0;
+  public double savingsGoal() throws IOException {
+    SavingsTarget savingsTarget = new SavingsTarget();
     while (true) {
       System.out.print("Enter your savings goal amount: ");
-      String input = reader.readLine();
+      double savingsGoal = 0;
       try {
-        savingsGoal = Double.parseDouble(input);
-        //move this
-        if (savingsGoal > 0) {
-          break;
-        } else {
-          System.out.println(
-              "Invalid input: Savings goal amount should be greater than 0. Please try again.");
-        }
-      } catch (NumberFormatException e) {
-        System.out.println("Invalid input: Please enter a valid number.");
+        savingsGoal = Double.parseDouble(reader.readLine());
+        savingsTarget.setTargetAmount(savingsGoal);
+        return savingsGoal;
+      } catch (IllegalArgumentException e) {
+        System.out.printf("Invalid input: %s%n", savingsGoal);
       }
-
-      SavingsType savingsType = inputSavingsType("Select your savings goal type: ", reader);
-
-      double currentSaved = 0;
-      while (true) {
-        System.out.print("Enter your current savings: ");
-        input = reader.readLine();
-        try {
-          currentSaved = Double.parseDouble(input);
-          if (currentSaved > 0) {
-            break;
-          } else {
-            System.out.println(
-                "Invalid input: Current savings should be greater than or equal to 0.");
-          }
-        } catch (NumberFormatException x) {
-          System.out.println("Invalid input: Pleaser enter a valid number.");
-        }
-      }
-
-      SavingsTarget savingsTarget = new SavingsTarget(savingsGoal, savingsType, currentSaved);
-      savingsTarget.setRemainingAmount(savingsGoal - currentSaved);
     }
   }
 
-  public static SavingsType inputSavingsType(String message, BufferedReader reader) {
+  public double currentSavings(double savingsGoal) throws IOException {
     while (true) {
+      System.out.print("Enter your current savings: ");
+      double currentSaved = 0;
       try {
-        System.out.println(message);
-        System.out.println("1. Emergency Fund");
-        System.out.println("2. Vacation");
-        System.out.println("3. Other");
-        int choice = Integer.parseInt(reader.readLine());
+        currentSaved = Double.parseDouble(reader.readLine());
+        SavingsTarget savingsTarget = new SavingsTarget(savingsGoal, currentSaved);
+        savingsTarget.setCurrentSaved(currentSaved);
+        savingsTarget.setRemainingAmount(savingsGoal - currentSaved);
+        return currentSaved;
+      } catch (IllegalArgumentException e) {
+        System.out.printf("Invalid input: %s%n", currentSaved);
+      }
+    }
+
+  }
+
+  public SavingsType inputSavingsType() throws IOException {
+    while (true) {
+      System.out.print("Select your savings goal type: ");
+      System.out.println("1. Emergency Fund");
+      System.out.println("2. Vacation");
+      System.out.println("3. Other");
+      int choice = 0;
+      try {
+        choice = Integer.parseInt(reader.readLine());
         if (choice >= 1 && choice <= 3) {
           return SavingsType.values()[choice - 1];
-        } else {
-          System.out.println("Invalid input. Please select a valid option.");
         }
-      } catch (NumberFormatException | IOException e) {
-        System.out.println("Invalid input. Please enter a valid number.");
+      } catch (IllegalArgumentException e) {
+        System.out.printf("Invalid input: %s%n", choice);
+        System.out.println("Choice must be between 1-3 ");
       }
     }
   }

@@ -26,9 +26,9 @@ public class SessionController {
       BudgetController controller = new BudgetController(budget, output, input);
       controller.initialize();
       controller.requestUserExpenses(comparison);
-      controller.savingsMethod();
-      controller.displays(budget, comparison, savingsTarget);
-
+      controller.currentSavings(controller.savingsGoal());
+      controller.displays(budget, comparison, new SavingsTarget(controller.savingsGoal(),
+          controller.currentSavings(controller.savingsGoal())));
     } while (continueBudgeting());
   }
 

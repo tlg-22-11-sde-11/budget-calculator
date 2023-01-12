@@ -50,9 +50,7 @@ public class Budget {
 
   public void addExpense(Category category, double amount) throws IllegalArgumentException {
     if (amount < 0) {
-      throw new IllegalArgumentException(
-          "The amount entered must be greater than or equal to 0"
-      );
+      throw new IllegalArgumentException("The amount entered must be greater than or equal to 0");
     }
       expenses.put(category, amount);
   }

@@ -2,16 +2,17 @@ package com.financialmanagement.model;
 
 public class SavingsTarget {
 
-    private double remainingAmount;
     private double targetAmount;
     private SavingsType savingsType;
     private double currentSaved;
 
-    public SavingsTarget(double targetAmount, SavingsType savingsType, double currentSaved) {
+    public SavingsTarget (){
+    }
+
+    public SavingsTarget(double targetAmount, double currentSaved) {
+        this();
         this.targetAmount = targetAmount;
-        this.savingsType = savingsType;
         this.currentSaved = currentSaved;
-        this.remainingAmount = targetAmount - currentSaved;
     }
 
     public double getRemainingAmount(){
@@ -19,14 +20,16 @@ public class SavingsTarget {
     }
 
     public void setRemainingAmount(double remainingAmount) {
-        this.remainingAmount = remainingAmount;
     }
 
     public double getTargetAmount() {
         return targetAmount;
     }
 
-    public void setTargetAmount(double targetAmount) {
+    public void setTargetAmount(double targetAmount) throws IllegalArgumentException {
+        if (targetAmount < 0){
+            throw new IllegalArgumentException("Savings Goal cannot be below 0");
+        }
         this.targetAmount = targetAmount;
     }
 
@@ -42,10 +45,10 @@ public class SavingsTarget {
         return currentSaved;
     }
 
-    public void setCurrentSaved(double currentSaved) throws NumberFormatException{
-        if(currentSaved < 0){
-            throw new NumberFormatException("The input is invalid. Your current savings should be greater than or equal to 0");
-        }else
+    public void setCurrentSaved(double currentSaved) throws IllegalArgumentException{
+        if (currentSaved < 0){
+            throw new IllegalArgumentException("Income cannot be below 0");
+        }
         this.currentSaved = currentSaved;
     }
 
