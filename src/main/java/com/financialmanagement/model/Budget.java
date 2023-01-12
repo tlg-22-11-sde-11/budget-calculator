@@ -26,38 +26,35 @@ public class Budget {
 
   public void setUserName(String userName) throws IllegalArgumentException {
 
-    if (userName.isEmpty() || userName == null || !userName.matches("[a-zA-Z]+")) {
+    if ( userName == null || userName.isEmpty() || !userName.matches("[a-zA-Z]+")) {
       throw new IllegalArgumentException("You must enter a username to proceed");
-
-    } else {
-      this.userName = userName;
-
     }
+      this.userName = userName;
   }
-
-
 
   public String getUserName() {
     return userName;
   }
 
   public double getIncome() throws NumberFormatException {
-    if (income < 0) {
-      throw new NumberFormatException(
-          "Invalid input: Monthly income should be greater than 0. Please try again.");
-    } else {
       return income;
     }
+
+
+  public void setIncome(double income) throws IllegalArgumentException {
+    if (income < 0){
+      throw new IllegalArgumentException("Income cannot be below 0");
+    }
+    this.income = income;
   }
 
-  public void addExpense(Category category, double amount) throws NumberFormatException {
+  public void addExpense(Category category, double amount) throws IllegalArgumentException {
     if (amount < 0) {
-      throw new NumberFormatException(
+      throw new IllegalArgumentException(
           "The amount entered must be greater than or equal to 0"
       );
-    } else {
-      expenses.put(category, amount);
     }
+      expenses.put(category, amount);
   }
 
   public double getExpense(Category category) {

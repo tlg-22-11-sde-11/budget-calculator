@@ -31,35 +31,38 @@ public class BudgetController {
 
   //Business Method
   public void initialize() throws IOException {
-    do {
-      System.out.print("Please enter your name: ");
-      String userName;
       Budget budget = new Budget();
+      enterUserName(budget);
+      enterIncome(budget);
+  }
+
+  private void enterIncome(Budget budget) throws IOException {
+    while (true) {
+      System.out.print("Enter your monthly income: ");
+      String input = null;
+      try {
+        input = reader.readLine();
+        income = Double.parseDouble(input);
+        budget.setIncome(income);
+        break;
+      } catch (IllegalArgumentException f) {
+        System.out.printf("Invalid input: %s%n", input);
+      }
+    }
+  }
+
+  private void enterUserName(Budget budget) throws IOException {
+    while (true) {
+      System.out.print("Please enter your name: ");
+      String userName = null;
       try {
         userName = reader.readLine();
         budget.setUserName(userName);
-
-      } catch (IOException e) {
-        System.out.println("Invalid input");
+        break;
+      } catch (IllegalArgumentException e) {
+        System.out.printf("Invalid input: %s%n", userName);
       }
-
-      while (true) {
-        System.out.print("Enter your monthly income: ");
-        String input = reader.readLine();
-        try {
-          income = Double.parseDouble(input);
-          if (income > 0) {
-            //Budget budget = new Budget(userName, income);
-            break;
-          } else {
-            System.out.println(
-                "Invalid input: Monthly income should be greater than 0. Please try again.");
-          }
-        } catch (NumberFormatException f) {
-          System.out.println("Invalid input: Pleaser enter a valid number.");
-        }
-      }
-    } while (true);
+    }
   }
 
   public void requestUserExpenses(BudgetComparison comparison) throws IOException {
@@ -68,21 +71,14 @@ public class BudgetController {
       double amount;
       while (true) {
         System.out.print("Enter your monthly expenses for " + category + ": ");
-        String input = reader.readLine();
+        String input = null;
         try {
+          input = reader.readLine();
           amount = Double.parseDouble(input);
-          if (amount > 0) {
-            budget.addExpense(category,
-                amount); //let addExpense check validation throw the exception
-            // TODO: 1/11/2023 keep track of total expenses so the running total doesn't exceed the income amount!
-            comparison.compareEachExpense(category);
-            break;
-          } else {
-            System.out.println(
-                "Invalid input: Expense should be greater than 0. Please try again.");
-          }
-        } catch (NumberFormatException f) {
-          System.out.println("Invalid input: Please enter a valid number.");
+          budget.addExpense(category, amount);
+          break;
+        } catch (IllegalArgumentException e) {
+          System.out.format("Invalid input %s%n: ", input);
         }
       }
     }
