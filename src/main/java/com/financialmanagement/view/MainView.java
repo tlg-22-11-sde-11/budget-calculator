@@ -25,7 +25,7 @@ public class MainView {
     public void displayExpenses() {
         System.out.println("Your monthly expenses are:");
         for (Category category : Category.values()) {
-            System.out.println("\t" + category + ": $" + budget.getTotalExpenses());
+            System.out.println("\t" + category + ": $" + budget.getExpense(category));
         }
     }
 

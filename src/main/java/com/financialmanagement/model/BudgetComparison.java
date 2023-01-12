@@ -28,6 +28,5 @@ public class BudgetComparison {
       String operator = totalDifference == 0 ? "the SAME AS" : monthlyDifference > 0 ? "MORE THAN" : "LESS THAN";
       System.out.printf(AVG_MSG, "Total Expenses", AVG_NATNL_SPENDING*100);
       System.out.printf(COMPARE_MESSAGE, Math.abs(monthlyDifference), operator);
-
     }
 }
