@@ -29,12 +29,16 @@ public class MainView {
         }
     }
 
+    public void displayTotalExpenses() {
+        System.out.println("Your total monthly expense is $" + budget.getTotalExpenses());
+    }
+
     public void displaySavings() {
-        System.out.println("Your total savings is: $" + budget.getSavings());
+        System.out.println("Your total savings is $" + budget.getSavings());
     }
 
     public void displaySavingsTarget() {
-        System.out.println("Your savings goal is: $" + savingsTarget.getTargetAmount() + " for your desired savings target.");
+        System.out.println("Your savings goal is $" + savingsTarget.getTargetAmount() + " for your desired savings target.");
         System.out.println("You have saved $" + savingsTarget.getCurrentSaved()
         + " towards your goal. You still need to save $" + savingsTarget.getRemainingAmount()
         + " to reach your goal.");

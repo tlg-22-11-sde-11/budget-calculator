@@ -38,7 +38,7 @@ public class SessionController {
   private boolean continueBudgeting() throws IOException {
 
     while (true) {
-      System.out.println("Do you want to do you budget again? (Y/n) ");
+      System.out.println("Do you want to do your budget again? (Y/n) ");
       String input = this.input.readLine().strip().toLowerCase();
       return input.isEmpty() || (input.charAt(0) != 'n');
     }
