@@ -37,7 +37,7 @@ public class Budget {
     return userName;
   }
 
-  public double getIncome() throws NumberFormatException {
+  public double getIncome() {
       return income;
     }
 
@@ -53,9 +53,6 @@ public class Budget {
     if (amount < 0) {
       throw new IllegalArgumentException("The amount entered must be greater than or equal to 0");
     }
-    /*if (expenses == null){
-      expenses = new HashMap<>();
-    }*/
       expenses.put(category, amount);
   }
 

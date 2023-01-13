@@ -34,8 +34,7 @@ public class MainView {
     }
 
     public void displaySavingsTarget() {
-        System.out.println("Your savings goal is: $" + savingsTarget.getTargetAmount() + " for "
-        + savingsTarget.getSavingsType());
+        System.out.println("Your savings goal is: $" + savingsTarget.getTargetAmount() + " for your desired savings target.");
         System.out.println("You have saved $" + savingsTarget.getCurrentSaved()
         + " towards your goal. You still need to save $" + savingsTarget.getRemainingAmount()
         + " to reach your goal.");

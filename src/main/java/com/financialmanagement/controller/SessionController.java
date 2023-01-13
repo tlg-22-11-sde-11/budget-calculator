@@ -19,16 +19,19 @@ public class SessionController {
 
   public void run() throws IOException {
     Budget budget = new Budget();
-    BudgetComparison comparison = new BudgetComparison(budget);
 
 
     do {
+      double goal = 0;
+      double savings = 0;
       BudgetController controller = new BudgetController(budget, output, input);
-      controller.initialize();
+      controller.initialize(budget);
+      BudgetComparison comparison = new BudgetComparison(budget);
       controller.requestUserExpenses(comparison);
-      controller.currentSavings(controller.savingsGoal());
-      controller.displays(budget, comparison, new SavingsTarget(controller.savingsGoal(),
-          controller.currentSavings(controller.savingsGoal())));
+      goal = controller.savingsGoal();
+      savings = controller.currentSavings(goal);
+      controller.inputSavingsType();
+      controller.displays(budget, comparison, new SavingsTarget(goal, savings));
     } while (continueBudgeting());
   }
 
