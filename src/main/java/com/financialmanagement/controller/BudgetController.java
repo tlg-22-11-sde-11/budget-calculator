@@ -135,6 +135,7 @@ public class BudgetController {
     MainView view = new MainView(budget, comparison, savingsTarget);
     view.displayIncome();
     view.displayExpenses();
+    view.displayTotalExpenses();
     view.displaySavings();
     view.displaySavingsTarget();
   }
