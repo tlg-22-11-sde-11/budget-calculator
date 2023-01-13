@@ -28,11 +28,9 @@ public class BudgetController {
   }
 
   //Business Method
-  public void initialize() throws IOException {
-    Budget budget = new Budget();
+  public void initialize(Budget budget) throws IOException {
     enterUserName(budget);
     enterIncome(budget);
-    // TODO: 1/12/2023 place all methods here
   }
 
   private void enterIncome(Budget budget) throws IOException {
@@ -116,7 +114,7 @@ public class BudgetController {
 
   public SavingsType inputSavingsType() throws IOException {
     while (true) {
-      System.out.print("Select your savings goal type: ");
+      System.out.println("Select your savings goal type: ");
       System.out.println("1. Emergency Fund");
       System.out.println("2. Vacation");
       System.out.println("3. Other");

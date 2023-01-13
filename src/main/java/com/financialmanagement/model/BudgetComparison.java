@@ -27,6 +27,6 @@ public class BudgetComparison {
       totalDifference = budget.getTotalExpenses() - (budget.getIncome()* AVG_NATNL_SPENDING);
       String operator = totalDifference == 0 ? "the SAME AS" : monthlyDifference > 0 ? "MORE THAN" : "LESS THAN";
       System.out.printf(AVG_MSG, "Total Expenses", AVG_NATNL_SPENDING*100);
-      System.out.printf(COMPARE_MESSAGE, monthlyDifference == 0 ? "" : String.valueOf(Math.abs(monthlyDifference)), operator);
+      System.out.printf("You are spending %s %s the national household average for all expense.%n%n", monthlyDifference == 0 ? "" : String.valueOf(Math.abs(monthlyDifference)), operator);
     }
 }
