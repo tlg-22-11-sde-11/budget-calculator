@@ -13,11 +13,13 @@ import java.io.PrintStream;
 
 public class BudgetController {
 
+  //Fields
   private final Budget budget;
   private final PrintStream output;
   private final BufferedReader input;
+  private double income;
+  private String DELIMITER = "===============================================================================================";
   BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-  double income;
 
   //Constructor
   public BudgetController(Budget budget, PrintStream output, BufferedReader input)
@@ -29,8 +31,11 @@ public class BudgetController {
 
   //Business Method
   public void initialize(Budget budget) throws IOException {
+    System.out.println(DELIMITER);
     enterUserName(budget);
+    System.out.println(DELIMITER);
     enterIncome(budget);
+    System.out.println(DELIMITER);
   }
 
   private void enterIncome(Budget budget) throws IOException {
@@ -104,6 +109,7 @@ public class BudgetController {
         SavingsTarget savingsTarget = new SavingsTarget(savingsGoal, currentSaved);
         savingsTarget.setCurrentSaved(currentSaved);
         savingsTarget.setRemainingAmount(savingsGoal - currentSaved);
+        System.out.println(DELIMITER);
         return currentSaved;
       } catch (IllegalArgumentException e) {
         System.out.printf("Invalid input: %s%n", currentSaved);
@@ -118,8 +124,10 @@ public class BudgetController {
       System.out.println("1. Emergency Fund");
       System.out.println("2. Vacation");
       System.out.println("3. Other");
+      System.out.println(DELIMITER);
       int choice = 0;
       try {
+        System.out.print("Enter (1-3): ");
         choice = Integer.parseInt(reader.readLine());
         if (choice >= 1 && choice <= 3) {
           return SavingsType.values()[choice - 1];

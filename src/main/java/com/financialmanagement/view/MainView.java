@@ -11,6 +11,8 @@ public class MainView {
     private Budget budget;
     private BudgetComparison comparison;
     private SavingsTarget savingsTarget;
+    private String DELIMITER = "===============================================================================================";
+
 
     public MainView(Budget budget, BudgetComparison comparison, SavingsTarget savingsTarget) {
         this.budget = budget;
@@ -23,18 +25,22 @@ public class MainView {
     }
 
     public void displayExpenses() {
-        System.out.println("Your monthly expenses are:");
+        System.out.println(DELIMITER);
+        System.out.printf("Your monthly expenses are:%n%n");
         for (Category category : Category.values()) {
-            System.out.println("\t" + category + ": $" + budget.getExpense(category));
+            System.out.println("\t*" + category + ": $" + budget.getExpense(category));
         }
+        System.out.println(DELIMITER);
     }
 
     public void displayTotalExpenses() {
         System.out.println("Your total monthly expense is $" + budget.getTotalExpenses());
+        System.out.println(DELIMITER);
     }
 
     public void displaySavings() {
         System.out.println("Your total savings is $" + budget.getSavings());
+        System.out.println(DELIMITER);
     }
 
     public void displaySavingsTarget() {
@@ -42,6 +48,7 @@ public class MainView {
         System.out.println("You have saved $" + savingsTarget.getCurrentSaved()
         + " towards your goal. You still need to save $" + savingsTarget.getRemainingAmount()
         + " to reach your goal.");
+        System.out.println(DELIMITER);
     }
 
 }
