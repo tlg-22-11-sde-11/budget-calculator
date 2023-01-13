@@ -20,7 +20,6 @@ public class SessionController {
   public void run() throws IOException {
     Budget budget = new Budget();
 
-
     do {
       double goal = 0;
       double savings = 0;

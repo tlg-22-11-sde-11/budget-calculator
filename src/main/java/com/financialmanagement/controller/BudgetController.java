@@ -115,7 +115,6 @@ public class BudgetController {
         System.out.printf("Invalid input: %s%n", currentSaved);
       }
     }
-
   }
 
   public SavingsType inputSavingsType() throws IOException {

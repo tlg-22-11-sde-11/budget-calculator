@@ -50,6 +50,5 @@ public class MainView {
         + " to reach your goal.");
         System.out.println(DELIMITER);
     }
-
 }
 
