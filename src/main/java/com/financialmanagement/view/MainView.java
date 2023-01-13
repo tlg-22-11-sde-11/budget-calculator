@@ -8,41 +8,42 @@ import java.util.Map;
 
 public class MainView {
 
-    private Budget budget;
-    private BudgetComparison comparison;
-    private SavingsTarget savingsTarget;
+  private Budget budget;
+  private BudgetComparison comparison;
+  private SavingsTarget savingsTarget;
 
-    public MainView(Budget budget, BudgetComparison comparison, SavingsTarget savingsTarget) {
-        this.budget = budget;
-        this.savingsTarget = savingsTarget;
-        this.comparison = comparison;
+  public MainView(Budget budget, BudgetComparison comparison, SavingsTarget savingsTarget) {
+    this.budget = budget;
+    this.savingsTarget = savingsTarget;
+    this.comparison = comparison;
+  }
+
+  public void displayIncome() {
+    System.out.println("Your monthly income is: $" + budget.getIncome());
+  }
+
+  public void displayExpenses() {
+    System.out.println("Your monthly expenses are:");
+    for (Category category : Category.values()) {
+      System.out.println("\t" + category + ": $" + budget.getExpense(category));
     }
+  }
 
-    public void displayIncome() {
-        System.out.println("Your monthly income is: $" + budget.getIncome());
-    }
+  public void displayTotalExpenses() {
+    System.out.println("Your total monthly expense is $" + budget.getTotalExpenses());
+  }
 
-    public void displayExpenses() {
-        System.out.println("Your monthly expenses are:");
-        for (Category category : Category.values()) {
-            System.out.println("\t" + category + ": $" + budget.getExpense(category));
-        }
-    }
+  public void displaySavings() {
+    System.out.println("Your total savings is $" + budget.getSavings());
+  }
 
-    public void displayTotalExpenses() {
-        System.out.println("Your total monthly expense is $" + budget.getTotalExpenses());
-    }
-
-    public void displaySavings() {
-        System.out.println("Your total savings is $" + budget.getSavings());
-    }
-
-    public void displaySavingsTarget() {
-        System.out.println("Your savings goal is $" + savingsTarget.getTargetAmount() + " for your desired savings target.");
-        System.out.println("You have saved $" + savingsTarget.getCurrentSaved()
+  public void displaySavingsTarget() {
+    System.out.println("Your savings goal is $" + savingsTarget.getTargetAmount()
+        + " for your desired savings target.");
+    System.out.println("You have saved $" + savingsTarget.getCurrentSaved()
         + " towards your goal. You still need to save $" + savingsTarget.getRemainingAmount()
         + " to reach your goal.");
-    }
+  }
 
 }
 

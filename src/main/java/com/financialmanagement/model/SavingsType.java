@@ -29,7 +29,7 @@ public enum SavingsType {
     return name;
   }
 
-  public void choseType(int choice) throws IllegalArgumentException{
+  public void choseType(int choice) throws IllegalArgumentException {
     if (choice >= 1 && choice <= 3) {
       throw new IllegalArgumentException("Choice must be between 1-3 ");
     }

@@ -1,6 +1,5 @@
 package com.financialmanagement.model;
 
-import java.nio.charset.IllegalCharsetNameException;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,10 +26,10 @@ public class Budget {
 
   public void setUserName(String userName) throws IllegalArgumentException {
 
-    if ( userName == null || userName.isEmpty() || !userName.matches("[a-zA-Z]+")) {
+    if (userName == null || userName.isEmpty() || !userName.matches("[a-zA-Z]+")) {
       throw new IllegalArgumentException("You must enter a username to proceed");
     }
-      this.userName = userName;
+    this.userName = userName;
   }
 
   public String getUserName() {
@@ -38,12 +37,12 @@ public class Budget {
   }
 
   public double getIncome() {
-      return income;
-    }
+    return income;
+  }
 
 
   public void setIncome(double income) throws IllegalArgumentException {
-    if (income < 0){
+    if (income < 0) {
       throw new IllegalArgumentException("Income cannot be below 0");
     }
     this.income = income;
@@ -53,7 +52,7 @@ public class Budget {
     if (amount < 0) {
       throw new IllegalArgumentException("The amount entered must be greater than or equal to 0");
     }
-      expenses.put(category, amount);
+    expenses.put(category, amount);
   }
 
   public double getExpense(Category category) {
